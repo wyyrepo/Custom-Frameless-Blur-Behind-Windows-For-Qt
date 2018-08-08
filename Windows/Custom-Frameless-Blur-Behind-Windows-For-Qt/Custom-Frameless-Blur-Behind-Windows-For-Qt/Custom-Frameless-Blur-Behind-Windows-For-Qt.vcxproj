@@ -10,6 +10,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>
     <Keyword>Qt4VSv1.0</Keyword>
@@ -112,19 +115,6 @@
       <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
     </QtRcc>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="CustomFramelessBlurBehindWindowsForQt.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="CustomFramelessBlurBehindWindowsForQt.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="CustomFramelessBlurBehindWindowsForQt.ui" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="CustomFramelessBlurBehindWindowsForQt.qrc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />
