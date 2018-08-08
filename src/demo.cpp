@@ -1,12 +1,14 @@
 #include <QApplication>
-#include <QMainWindow>
+
+
+#include "FramelessBlurBehindWindowBase.h"
 
 int
 main( int argc, char *argv[] )
 {
     QApplication a( argc, argv );
 
-    QMainWindow  w;
+    cFramelessBlurBehindWindowBase  w;
     w.resize( 800, 600 );
     w.show();
 
