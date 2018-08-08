@@ -6,7 +6,7 @@
 
 
 #include "DemoCustomMainWindow.h"
-#include "CustomCaptionButton.h"
+#include "CFBBWFQ/CustomCaptionButton.h"
 
 
 class cDemoCustomMainCaption :

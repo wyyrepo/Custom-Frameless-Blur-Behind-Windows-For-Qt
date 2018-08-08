@@ -8,33 +8,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\WinAPIUtils.cpp">
+    <ClCompile Include="..\..\..\src\CFBBWFQ\CustomCaptionButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\AbstractFramelessBlurBehindWindow.cpp">
+    <ClCompile Include="..\..\..\src\CFBBWFQ\CustomMainWindowBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\CustomMainWindowBase.cpp">
+    <ClCompile Include="..\..\..\src\CFBBWFQ\WinAPIUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\CustomCaptionButton.cpp">
+    <ClCompile Include="..\..\..\src\CFBBWFQ\AbstractFramelessBlurBehindWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\WinAPIUtils.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\AbstractFramelessBlurBehindWindow.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\CustomMainWindowBase.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="..\..\..\src\CustomCaptionButton.h">
+    <QtMoc Include="..\..\..\src\CFBBWFQ\CustomCaptionButton.h">
       <Filter>Source Files</Filter>
     </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\CFBBWFQ\CustomMainWindowBase.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\CFBBWFQ\WinAPIUtils.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\CFBBWFQ\AbstractFramelessBlurBehindWindow.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

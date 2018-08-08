@@ -11,16 +11,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\CustomCaptionButton.cpp" />
-    <ClCompile Include="..\..\..\src\CustomMainWindowBase.cpp" />
-    <ClCompile Include="..\..\..\src\AbstractFramelessBlurBehindWindow.cpp" />
-    <ClCompile Include="..\..\..\src\WinAPIUtils.cpp" />
+    <ClCompile Include="..\..\..\src\CFBBWFQ\AbstractFramelessBlurBehindWindow.cpp" />
+    <ClCompile Include="..\..\..\src\CFBBWFQ\CustomCaptionButton.cpp" />
+    <ClCompile Include="..\..\..\src\CFBBWFQ\CustomMainWindowBase.cpp" />
+    <ClCompile Include="..\..\..\src\CFBBWFQ\WinAPIUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="..\..\..\src\CustomCaptionButton.h" />
-    <ClInclude Include="..\..\..\src\CustomMainWindowBase.h" />
-    <ClInclude Include="..\..\..\src\AbstractFramelessBlurBehindWindow.h" />
-    <ClInclude Include="..\..\..\src\WinAPIUtils.h" />
+    <QtMoc Include="..\..\..\src\CFBBWFQ\CustomCaptionButton.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\CFBBWFQ\AbstractFramelessBlurBehindWindow.h" />
+    <ClInclude Include="..\..\..\src\CFBBWFQ\CustomMainWindowBase.h" />
+    <ClInclude Include="..\..\..\src\CFBBWFQ\WinAPIUtils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>
