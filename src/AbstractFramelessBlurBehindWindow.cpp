@@ -1,4 +1,4 @@
-#include "FramelessBlurBehindWindowBase.h"
+#include "AbstractFramelessBlurBehindWindow.h"
 
 
 #include "WinAPIUtils.h"
@@ -30,16 +30,16 @@ namespace  CFBBWFQ
 //----------------------------------------------------------- Construction / Destruction
 
 
-cFramelessBlurBehindWindowBase::~cFramelessBlurBehindWindowBase()
+cAbstractFramelessBlurBehindWindow::~cAbstractFramelessBlurBehindWindow()
 {
 }
 
 
-cFramelessBlurBehindWindowBase::cFramelessBlurBehindWindowBase( QWidget* parent ) :
+cAbstractFramelessBlurBehindWindow::cAbstractFramelessBlurBehindWindow( QWidget* parent ) :
     tParent(parent),
     mBorderWidth( DEFAULT_BORDER_WIDTH )
 {
-    setObjectName( "cFramelessBlurBehindWindowBase" );
+    setObjectName( "cAbstractFramelessBlurBehindWindow" );
 
     // The functions are called in this order, and this is important.
     // otherwise some flags are overriden in an unwanted way and init isn't done properly.
@@ -54,28 +54,28 @@ cFramelessBlurBehindWindowBase::cFramelessBlurBehindWindowBase( QWidget* parent 
 
 
 int
-cFramelessBlurBehindWindowBase::BorderWidth()
+cAbstractFramelessBlurBehindWindow::BorderWidth()
 {
     return  mBorderWidth;
 }
 
 
 int
-cFramelessBlurBehindWindowBase::DefaultBorderWidth()
+cAbstractFramelessBlurBehindWindow::DefaultBorderWidth()
 {
     return  DEFAULT_BORDER_WIDTH;
 }
 
 
 void
-cFramelessBlurBehindWindowBase::SetBorderWidth( int iValue )
+cAbstractFramelessBlurBehindWindow::SetBorderWidth( int iValue )
 {
     mBorderWidth = iValue;
 }
 
 
 void
-cFramelessBlurBehindWindowBase::ResetBorderWidth()
+cAbstractFramelessBlurBehindWindow::ResetBorderWidth()
 {
     SetBorderWidth( DefaultBorderWidth() );
 }
@@ -86,7 +86,7 @@ cFramelessBlurBehindWindowBase::ResetBorderWidth()
 
 
 void
-cFramelessBlurBehindWindowBase::InitNativeGlass()
+cAbstractFramelessBlurBehindWindow::InitNativeGlass()
 {
     // Do not set autofill background because it messes up the background erasing,
     // and transparent shapes will be painted over & not erased
@@ -111,7 +111,7 @@ cFramelessBlurBehindWindowBase::InitNativeGlass()
 
 
 void
-cFramelessBlurBehindWindowBase::InitNativeFrameless()
+cAbstractFramelessBlurBehindWindow::InitNativeFrameless()
 {
     // Drop shadow, this is redundant but not conflicting with windows 8 ( or greater ) way of setting glass.
     QtWin::extendFrameIntoClientArea( this, 1, 1, 1, 1 );
@@ -127,7 +127,7 @@ cFramelessBlurBehindWindowBase::InitNativeFrameless()
 
 
 void
-cFramelessBlurBehindWindowBase::WM_NCHITTEST_Event_Handler( int iX, int iY, long* oResult )
+cAbstractFramelessBlurBehindWindow::WM_NCHITTEST_Event_Handler( int iX, int iY, long* oResult )
 {
     // Custom Handling of NonClient Event, normally handled by the native Caption.
     // Here we handle native OS resize & move events.
@@ -180,7 +180,7 @@ cFramelessBlurBehindWindowBase::WM_NCHITTEST_Event_Handler( int iX, int iY, long
 
 
 bool
-cFramelessBlurBehindWindowBase::NCHitLeftBorder( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
+cAbstractFramelessBlurBehindWindow::NCHitLeftBorder( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
 {
     // Default implementation can be overriden in childs of this class.
     return  iX >= iRect.left() && iX < iRect.left() + iBorderWidth;
@@ -188,7 +188,7 @@ cFramelessBlurBehindWindowBase::NCHitLeftBorder( const  QRect&  iRect, const  lo
 
 
 bool
-cFramelessBlurBehindWindowBase::NCHitRightBorder( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
+cAbstractFramelessBlurBehindWindow::NCHitRightBorder( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
 {
     // Default implementation can be overriden in childs of this class.
     return  iX < iRect.right() && iX >= iRect.right() - iBorderWidth;
@@ -196,7 +196,7 @@ cFramelessBlurBehindWindowBase::NCHitRightBorder( const  QRect&  iRect, const  l
 
 
 bool
-cFramelessBlurBehindWindowBase::NCHitTopBorder( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
+cAbstractFramelessBlurBehindWindow::NCHitTopBorder( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
 {
     // Default implementation can be overriden in childs of this class.
     return  iY >= iRect.top() && iY < iRect.top() + iBorderWidth;
@@ -204,7 +204,7 @@ cFramelessBlurBehindWindowBase::NCHitTopBorder( const  QRect&  iRect, const  lon
 
 
 bool
-cFramelessBlurBehindWindowBase::NCHitBottomBorder( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
+cAbstractFramelessBlurBehindWindow::NCHitBottomBorder( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
 {
     // Default implementation can be overriden in childs of this class.
     return  iY < iRect.bottom()&& iY >= iRect.bottom() - iBorderWidth;
@@ -212,7 +212,7 @@ cFramelessBlurBehindWindowBase::NCHitBottomBorder( const  QRect&  iRect, const  
 
 
 bool
-cFramelessBlurBehindWindowBase::NCHitTopLeftCorner( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
+cAbstractFramelessBlurBehindWindow::NCHitTopLeftCorner( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
 {
     // Default implementation can be overriden in childs of this class.
     return  NCHitTopBorder( iRect, iBorderWidth, iX, iY ) &&
@@ -221,7 +221,7 @@ cFramelessBlurBehindWindowBase::NCHitTopLeftCorner( const  QRect&  iRect, const 
 
 
 bool
-cFramelessBlurBehindWindowBase::NCHitTopRightCorner( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
+cAbstractFramelessBlurBehindWindow::NCHitTopRightCorner( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
 {
     // Default implementation can be overriden in childs of this class.
     return  NCHitTopBorder( iRect, iBorderWidth, iX, iY ) &&
@@ -230,7 +230,7 @@ cFramelessBlurBehindWindowBase::NCHitTopRightCorner( const  QRect&  iRect, const
 
 
 bool
-cFramelessBlurBehindWindowBase::NCHitBotRightCorner( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
+cAbstractFramelessBlurBehindWindow::NCHitBotRightCorner( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
 {
     // Default implementation can be overriden in childs of this class.
     return  NCHitBottomBorder( iRect, iBorderWidth, iX, iY ) &&
@@ -239,7 +239,7 @@ cFramelessBlurBehindWindowBase::NCHitBotRightCorner( const  QRect&  iRect, const
 
 
 bool
-cFramelessBlurBehindWindowBase::NCHitBotLeftCorner( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
+cAbstractFramelessBlurBehindWindow::NCHitBotLeftCorner( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
 {
     // Default implementation can be overriden in childs of this class.
     return  NCHitBottomBorder( iRect, iBorderWidth, iX, iY ) &&
@@ -248,7 +248,7 @@ cFramelessBlurBehindWindowBase::NCHitBotLeftCorner( const  QRect&  iRect, const 
 
 
 bool
-cFramelessBlurBehindWindowBase::NCHitCaption( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
+cAbstractFramelessBlurBehindWindow::NCHitCaption( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
 {
     // Default implementation can be overriden in childs of this class.
     return  true;
@@ -260,7 +260,7 @@ cFramelessBlurBehindWindowBase::NCHitCaption( const  QRect&  iRect, const  long 
 
 
 bool
-cFramelessBlurBehindWindowBase::nativeEvent( const  QByteArray&  eventType, void* message, long* result)
+cAbstractFramelessBlurBehindWindow::nativeEvent( const  QByteArray&  eventType, void* message, long* result)
 {
     // Cast to WINAPI standards
     MSG*    wmsg    = reinterpret_cast< MSG* >( message );

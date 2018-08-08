@@ -8,7 +8,7 @@ namespace  CFBBWFQ
 {
 
 
-class cFramelessBlurBehindWindowBase :
+class cAbstractFramelessBlurBehindWindow :
     public QMainWindow
 {
 
@@ -16,8 +16,8 @@ class cFramelessBlurBehindWindowBase :
 
 public:
     // Construction / Destruction
-    virtual  ~cFramelessBlurBehindWindowBase();
-    cFramelessBlurBehindWindowBase( QWidget* parent = Q_NULLPTR );
+    virtual  ~cAbstractFramelessBlurBehindWindow();
+    cAbstractFramelessBlurBehindWindow( QWidget* parent = Q_NULLPTR );
 
 protected:
     // Protected Non-Client OS geometry setup for behaviour override in childrens
