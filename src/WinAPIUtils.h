@@ -4,6 +4,10 @@
 #include <windows.h>
 
 
+namespace  _CFBBWFQ_ext
+{
+
+
 // Utility Enum for Windows Versions
 enum  eWindowsVersion
 {
@@ -31,4 +35,7 @@ bool                EnableGlassForWindow8OrGreater( HWND iWindow );
 
 // Internal Functions related to the Windows API
 static HMODULE      _load_sys_library(WCHAR* name);
+
+
+} // namespace  _CFBBWFQ_ext
 

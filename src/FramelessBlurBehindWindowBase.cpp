@@ -7,6 +7,9 @@
 #include <QtWinExtras>
 
 
+namespace  CFBBWFQ
+{
+
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------- Default values defines
 
@@ -94,15 +97,15 @@ cFramelessBlurBehindWindowBase::InitNativeGlass()
 
     // We enable blur in different ways according to windows version
     // That way all windows versions are covered since windows vista, simple enough.
-    eWindowsVersion v = GetWindowsVersion();
+    ::_CFBBWFQ_ext::eWindowsVersion v = ::_CFBBWFQ_ext::GetWindowsVersion();
 
     // The simple way with DWM access wrapped by Qt WinExtras for windows vista & 7
-    if( v >= eWindowsVersion::kWindowsVista && v < eWindowsVersion::kWindows8 )
+    if( v >= ::_CFBBWFQ_ext::eWindowsVersion::kWindowsVista && v < ::_CFBBWFQ_ext::eWindowsVersion::kWindows8 )
         QtWin::enableBlurBehindWindow( this );
 
     // The hard hacky way with to undocumented windows API, for windows 8 & 10
-    if( v >= eWindowsVersion::kWindows8 )
-        EnableGlassForWindow8OrGreater( (HWND)winId() );
+    if( v >= ::_CFBBWFQ_ext::eWindowsVersion::kWindows8 )
+        ::_CFBBWFQ_ext::EnableGlassForWindow8OrGreater( (HWND)winId() );
 
 }
 
@@ -297,4 +300,7 @@ cFramelessBlurBehindWindowBase::nativeEvent( const  QByteArray&  eventType, void
         }
     }
 }
+
+
+} // namespace  CFBBWFQ
 

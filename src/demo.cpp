@@ -8,7 +8,7 @@ main( int argc, char *argv[] )
 {
     QApplication a( argc, argv );
 
-    cFramelessBlurBehindWindowBase  w;
+    ::CFBBWFQ::cFramelessBlurBehindWindowBase  w;
     w.resize( 800, 600 );
     w.show();
 

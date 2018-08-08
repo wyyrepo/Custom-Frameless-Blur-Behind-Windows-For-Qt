@@ -8,6 +8,10 @@
 #include <VersionHelpers.h>
 
 
+namespace  _CFBBWFQ_ext
+{
+
+
 // Mirror Enums & Structs for accessing non-documented windows API
 typedef enum {
     ACCENT_DISABLED = 0,
@@ -134,4 +138,7 @@ _load_sys_library(WCHAR* name)
         return  0;
     }
 }
+
+
+} // namespace  _CFBBWFQ_ext
 

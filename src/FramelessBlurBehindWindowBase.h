@@ -4,6 +4,10 @@
 #include <QMainWindow>
 
 
+namespace  CFBBWFQ
+{
+
+
 class cFramelessBlurBehindWindowBase :
     public QMainWindow
 {
@@ -48,4 +52,7 @@ private:
     // Non-Client OS border geometry
     int  mBorderWidth;
 };
+
+
+} // namespace  CFBBWFQ
 
