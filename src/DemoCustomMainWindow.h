@@ -18,6 +18,13 @@ public:
     virtual  ~cDemoCustomMainWindow();
     cDemoCustomMainWindow( QWidget* parent = Q_NULLPTR );
 
+public:
+    // Buffer methods for customization of the caption
+    void  ActiveCaptionBackgroundColor( const  QColor& iColor );
+    const  QColor&  ActiveCaptionBackgroundColor();
+    void  InactiveCaptionBackgroundColor( const  QColor& iColor );
+    const  QColor&  InactiveCaptionBackgroundColor();
+
 private:
     // Protected Non-Client OS behaviour handling overrides
     virtual  bool  NCHitCaption( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )  override;

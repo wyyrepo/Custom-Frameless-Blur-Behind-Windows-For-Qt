@@ -29,6 +29,38 @@ cDemoCustomMainWindow::cDemoCustomMainWindow( QWidget *parent ) :
 
 
 //--------------------------------------------------------------------------------------
+//-------------------------------------- Buffer methods for customization of the caption
+
+
+void
+cDemoCustomMainWindow::ActiveCaptionBackgroundColor( const  QColor& iColor )
+{
+    mCustomCaption->ActiveBackgroundColor( iColor );
+}
+
+
+const  QColor&
+cDemoCustomMainWindow::ActiveCaptionBackgroundColor()
+{
+    return  mCustomCaption->ActiveBackgroundColor();
+}
+
+
+void
+cDemoCustomMainWindow::InactiveCaptionBackgroundColor( const  QColor& iColor )
+{
+    mCustomCaption->InactiveBackgroundColor( iColor );
+}
+
+
+const  QColor&
+cDemoCustomMainWindow::InactiveCaptionBackgroundColor()
+{
+    return  mCustomCaption->InactiveBackgroundColor();
+}
+
+
+//--------------------------------------------------------------------------------------
 //--------------------------------- Protected Non-Client OS behaviour handling overrides
 
 

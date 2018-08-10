@@ -5,7 +5,7 @@
 #include <QWidget>
 
 
-#include "DemoCustomMainWindow.h"
+#include "CFBBWFQ/CustomMainWindowBase.h"
 #include "CFBBWFQ/CustomCaptionButton.h"
 
 
@@ -15,10 +15,19 @@ class cDemoCustomMainCaption :
 
     Q_OBJECT
 
+    typedef  ::CFBBWFQ::cCustomMainWindowBase  tParent;
+
 public:
     // Construction / Destruction
     virtual  ~cDemoCustomMainCaption();
-    cDemoCustomMainCaption( cDemoCustomMainWindow* parent );
+    cDemoCustomMainCaption( tParent* parent );
+
+public:
+    // Public customization utilities
+    void  ActiveBackgroundColor( const  QColor& iColor );
+    const  QColor&  ActiveBackgroundColor();
+    void  InactiveBackgroundColor( const  QColor& iColor );
+    const  QColor&  InactiveBackgroundColor();
 
 public:
     // Custom NC Handling implementation in caption
@@ -48,6 +57,9 @@ private:
     ::CFBBWFQ::cCustomCaptionButton*  mMaximizeButton;
     ::CFBBWFQ::cCustomCaptionButton*  mMinimizeButton;
 
-    cDemoCustomMainWindow*    mParent;
+    QColor  mActiveBackgroundColor;
+    QColor  mInactiveBackgroundColor;
+
+    tParent*  mParent;
 };
 
