@@ -17,7 +17,7 @@ class cAbstractFramelessBlurBehindWindow :
 public:
     // Construction / Destruction
     virtual  ~cAbstractFramelessBlurBehindWindow();
-    cAbstractFramelessBlurBehindWindow( QWidget* parent = Q_NULLPTR );
+    cAbstractFramelessBlurBehindWindow( QWidget*  parent = Q_NULLPTR );
 
 protected:
     // Protected Non-Client OS geometry setup for behaviour override in childrens

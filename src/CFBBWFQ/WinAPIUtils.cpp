@@ -50,29 +50,10 @@ static const DWORD _WCA_ACCENT_POLICY = 19;
 static const auto _dropShadowFlag = 0x20 | 0x40 | 0x80 | 0x100;
 
 
-int
-GetZOrder( HWND iTarget )
-{
-    HWND handle = GetTopWindow( NULL );
-    int z = 0;
-
-    while( handle != NULL )
-    {
-        if( handle == iTarget )
-            break;
-
-        handle = GetNextWindow( handle, GW_HWNDNEXT );
-        ++z;
-    }   
-
-    return  z;
-}
-
-
 eWindowsVersion
 GetWindowsVersion()
 {
-    eWindowsVersion  ret = kNone;
+    eWindowsVersion  ret = kBadValue;
     if( IsWindowsXPOrGreater() )        ret = eWindowsVersion::kWindowsXP;
     if( IsWindowsXPSP1OrGreater() )     ret = eWindowsVersion::kWindowsXPSP1;
     if( IsWindowsXPSP2OrGreater() )     ret = eWindowsVersion::kWindowsXPSP2;
@@ -103,9 +84,9 @@ EnableGlassForWindow8OrGreater( HWND iWindow )
 
     HMODULE user32 = _load_sys_library(L"user32.dll");
     if (user32)
-        _pSetWindowCompositionAttribute = (HRESULT (WINAPI*)(HWND, WINCOMPATTR *))GetProcAddress(user32, "SetWindowCompositionAttribute");
+        _pSetWindowCompositionAttribute = (HRESULT(WINAPI*)(HWND, WINCOMPATTR*))GetProcAddress( user32, "SetWindowCompositionAttribute" );
     else
-        return  false;  // Fail
+        return  false;  // Fail, function is not available. This undocumented function may have been moved somewhere else.
 
     DWMACCENTPOLICY policy = { ACCENT_ENABLE_BLURBEHIND , _dropShadowFlag, 0, 0 };
     //DWMACCENTPOLICY policy = { ACCENT_ENABLE_BLURBEHIND , 0, 0, 0 }; // Without drop shadow
@@ -122,16 +103,16 @@ static HMODULE
 _load_sys_library(WCHAR* name)
 {
     WCHAR path[MAX_PATH];
-    unsigned int len = GetSystemDirectory( path, MAX_PATH);
+    unsigned int len = GetSystemDirectory( path, MAX_PATH );
     char* str = new  char[MAX_PATH];
-    int ret = std::wcstombs(str, path, len+1);
+    int ret = std::wcstombs( str, path, len+1 );
     str[ret]='\0';
 
-    if (len && len + wcslen(name) + 1 < MAX_PATH)
+    if ( len && len + wcslen( name ) + 1 < MAX_PATH )
     {
         path[len] = '\\';
-        wcscpy (&path[len + 1], name);
-        return  LoadLibrary(path);
+        wcscpy ( &path[len + 1], name );
+        return  LoadLibrary( path );
     }
     else
     {

@@ -11,7 +11,7 @@ namespace  _CFBBWFQ_ext
 // Utility Enum for Windows Versions
 enum  eWindowsVersion
 {
-    kNone = 0,
+    kBadValue = 0,
     kWindowsXP,
     kWindowsXPSP1,
     kWindowsXPSP2,
@@ -28,7 +28,6 @@ enum  eWindowsVersion
 
 
 // Public utility Functions related to the Windows API
-int                 GetZOrder( HWND iTarget );
 eWindowsVersion     GetWindowsVersion();
 bool                IsWindowsVersion( eWindowsVersion iWindowsVersion );
 bool                EnableGlassForWindow8OrGreater( HWND iWindow );
