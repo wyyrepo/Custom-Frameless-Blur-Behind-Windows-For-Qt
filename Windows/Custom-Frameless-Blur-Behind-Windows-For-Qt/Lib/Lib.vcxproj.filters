@@ -20,6 +20,9 @@
     <ClCompile Include="..\..\..\src\CFBBWFQ\AbstractFramelessBlurBehindWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\CFBBWFQ\CustomMainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\..\..\src\CFBBWFQ\CustomCaptionButton.h">
@@ -34,6 +37,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\CFBBWFQ\AbstractFramelessBlurBehindWindow.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\CFBBWFQ\CustomMainWindow.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

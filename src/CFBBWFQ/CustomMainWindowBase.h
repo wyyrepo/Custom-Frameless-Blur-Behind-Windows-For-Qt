@@ -4,6 +4,11 @@
 #include "AbstractFramelessBlurBehindWindow.h"
 
 
+// Secondary level for custom windows
+// Handles Qt events and Qt API calls
+// You should not derive this class
+
+
 namespace  CFBBWFQ
 {
 

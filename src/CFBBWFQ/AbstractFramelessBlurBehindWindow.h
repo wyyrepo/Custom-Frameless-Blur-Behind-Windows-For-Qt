@@ -4,6 +4,11 @@
 #include <QMainWindow>
 
 
+// Primary abstract level for custom windows
+// Handles OS events and OS API calls
+// You should not derive this class
+
+
 namespace  CFBBWFQ
 {
 
@@ -31,17 +36,18 @@ private:
     void    InitNativeGlass();
     void    InitNativeFrameless();
 
-protected:
+private:
     // Protected Non-Client OS behaviour handling
     void  WM_NCHITTEST_Event_Handler( int iX, int iY, long *oResult );
-    virtual  bool  NCHitLeftBorder(     const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
-    virtual  bool  NCHitRightBorder(    const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
-    virtual  bool  NCHitTopBorder(      const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
-    virtual  bool  NCHitBottomBorder(   const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
-    virtual  bool  NCHitTopLeftCorner(  const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
-    virtual  bool  NCHitTopRightCorner( const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
-    virtual  bool  NCHitBotRightCorner( const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
-    virtual  bool  NCHitBotLeftCorner(  const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
+    bool  NCHitLeftBorder(     const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
+    bool  NCHitRightBorder(    const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
+    bool  NCHitTopBorder(      const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
+    bool  NCHitBottomBorder(   const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
+    bool  NCHitTopLeftCorner(  const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
+    bool  NCHitTopRightCorner( const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
+    bool  NCHitBotRightCorner( const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
+    bool  NCHitBotLeftCorner(  const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
+protected:
     virtual  bool  NCHitCaption(        const  QRect&  iRect, const long iBorderWidth, long iX, long iY );
 
 protected:
