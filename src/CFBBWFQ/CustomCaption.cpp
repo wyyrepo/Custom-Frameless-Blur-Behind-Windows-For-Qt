@@ -1,8 +1,11 @@
-#include "DemoCustomMainCaption.h"
+#include "CustomCaption.h"
 
 
-#include <QApplication>
 #include <QPainter>
+
+
+namespace  CFBBWFQ
+{
 
 
 //--------------------------------------------------------------------------------------
@@ -18,14 +21,13 @@
 //----------------------------------------------------------- Construction / Destruction
 
 
-cDemoCustomMainCaption::~cDemoCustomMainCaption()
+cCustomCaption::~cCustomCaption()
 {
     Destroy();
 }
 
-cDemoCustomMainCaption::cDemoCustomMainCaption( tParent* parent ) :
-    QWidget( parent ),
-    mParent( parent ),
+cCustomCaption::cCustomCaption( QWidget* parent ) :
+    tParent( parent ),
     mCloseButton(       NULL ),
     mMaximizeButton(    NULL ),
     mMinimizeButton(    NULL ),
@@ -43,27 +45,27 @@ cDemoCustomMainCaption::cDemoCustomMainCaption( tParent* parent ) :
 
 
 void
-cDemoCustomMainCaption::ActiveBackgroundColor( const  QColor& iColor )
+cCustomCaption::ActiveBackgroundColor( const  QColor& iColor )
 {
     mActiveBackgroundColor = iColor;
 }
 
 
 const  QColor&
-cDemoCustomMainCaption::ActiveBackgroundColor()
+cCustomCaption::ActiveBackgroundColor()
 {
     return  mActiveBackgroundColor;
 }
 
 void
-cDemoCustomMainCaption::InactiveBackgroundColor( const  QColor& iColor )
+cCustomCaption::InactiveBackgroundColor( const  QColor& iColor )
 {
     mInactiveBackgroundColor = iColor;
 }
 
 
 const  QColor&
-cDemoCustomMainCaption::InactiveBackgroundColor()
+cCustomCaption::InactiveBackgroundColor()
 {
     return  mInactiveBackgroundColor;
 }
@@ -74,7 +76,7 @@ cDemoCustomMainCaption::InactiveBackgroundColor()
 
 
 bool
-cDemoCustomMainCaption::HitEmptySpace( long iX, long iY )
+cCustomCaption::HitEmptySpace( long iX, long iY )
 {
     QList<QWidget*> list = this->findChildren<QWidget*>();
 
@@ -93,11 +95,11 @@ cDemoCustomMainCaption::HitEmptySpace( long iX, long iY )
 
 
 void
-cDemoCustomMainCaption::paintEvent(  QPaintEvent*    event )
+cCustomCaption::paintEvent(  QPaintEvent*    event )
 {
     QPainter painter(this);
     painter.setRenderHint( QPainter::Antialiasing, false );
-    QColor  bgColor = mParent->isActiveWindow() ? mActiveBackgroundColor : mInactiveBackgroundColor;
+    QColor  bgColor = topLevelWidget()->isActiveWindow() ? mActiveBackgroundColor : mInactiveBackgroundColor;
 
     int w = width();
     int h = height();
@@ -109,7 +111,7 @@ cDemoCustomMainCaption::paintEvent(  QPaintEvent*    event )
 
 
 void
-cDemoCustomMainCaption::resizeEvent( QResizeEvent *event )
+cCustomCaption::resizeEvent( QResizeEvent *event )
 {
     QWidget::resizeEvent(event);
     Compose();
@@ -121,31 +123,22 @@ cDemoCustomMainCaption::resizeEvent( QResizeEvent *event )
 
 
 void
-cDemoCustomMainCaption::ProcessCloseClicked()
+cCustomCaption::ProcessCloseClicked()
 {
-    mParent->close();
-    QApplication::quit();
-    QApplication::exit();
+    emit  tParent::CloseClicked();
 }
 
 void
-cDemoCustomMainCaption::ProcessMaximizeClicked()
+cCustomCaption::ProcessMaximizeClicked()
 {
-    if( mParent->CheckCustomWindowMaximizedState() )
-    {
-        mParent->Restore();
-    }
-    else
-    {
-        mParent->showMaximized();
-    }
+    emit  tParent::MaximizeClicked();
 }
 
 
 void
-cDemoCustomMainCaption::ProcessMinimizeClicked()
+cCustomCaption::ProcessMinimizeClicked()
 {
-    mParent->showMinimized();
+    emit  tParent::MinimizeClicked();
 }
 
 
@@ -154,7 +147,7 @@ cDemoCustomMainCaption::ProcessMinimizeClicked()
 
 
 void
-cDemoCustomMainCaption::Init()
+cCustomCaption::Init()
 {
     if( !mCloseButton )     mCloseButton    = new  ::CFBBWFQ::cCustomCaptionButton( this );
     if( !mMaximizeButton )  mMaximizeButton = new  ::CFBBWFQ::cCustomCaptionButton( this );
@@ -163,7 +156,7 @@ cDemoCustomMainCaption::Init()
 
 
 void
-cDemoCustomMainCaption::Build()
+cCustomCaption::Build()
 {
     mCloseButton->SetShape( ::CFBBWFQ::cCustomCaptionButton::eShape::kClose );
     mMaximizeButton->SetShape( ::CFBBWFQ::cCustomCaptionButton::eShape::kMaximize );
@@ -180,7 +173,7 @@ cDemoCustomMainCaption::Build()
 
 
 void
-cDemoCustomMainCaption::Compose()
+cCustomCaption::Compose()
 {
     int w = width();
     int h = height();
@@ -202,7 +195,7 @@ cDemoCustomMainCaption::Compose()
 
 
 void
-cDemoCustomMainCaption::Destroy()
+cCustomCaption::Destroy()
 {
     delete  mCloseButton;
     delete  mMaximizeButton;
@@ -212,4 +205,7 @@ cDemoCustomMainCaption::Destroy()
     mMaximizeButton = 0;
     mMinimizeButton = 0;
 }
+
+
+} // namespace  CFBBWFQ
 

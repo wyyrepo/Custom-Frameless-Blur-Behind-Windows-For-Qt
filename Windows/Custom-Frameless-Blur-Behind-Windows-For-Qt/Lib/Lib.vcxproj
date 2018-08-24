@@ -12,6 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\CFBBWFQ\AbstractFramelessBlurBehindWindow.cpp" />
+    <ClCompile Include="..\..\..\src\CFBBWFQ\CustomCaption.cpp" />
+    <ClCompile Include="..\..\..\src\CFBBWFQ\CustomCaptionBase.cpp" />
     <ClCompile Include="..\..\..\src\CFBBWFQ\CustomCaptionButton.cpp" />
     <ClCompile Include="..\..\..\src\CFBBWFQ\CustomMainWindow.cpp" />
     <ClCompile Include="..\..\..\src\CFBBWFQ\CustomMainWindowBase.cpp" />
@@ -22,7 +24,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\CFBBWFQ\AbstractFramelessBlurBehindWindow.h" />
-    <ClInclude Include="..\..\..\src\CFBBWFQ\CustomMainWindow.h" />
+    <QtMoc Include="..\..\..\src\CFBBWFQ\CustomCaptionBase.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_WINEXTRAS_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_WINEXTRAS_LIB</Define>
+    </QtMoc>
+    <QtMoc Include="..\..\..\src\CFBBWFQ\CustomCaption.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_WINEXTRAS_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtWinExtras</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_WINEXTRAS_LIB</Define>
+    </QtMoc>
+    <QtMoc Include="..\..\..\src\CFBBWFQ\CustomMainWindow.h" />
     <ClInclude Include="..\..\..\src\CFBBWFQ\CustomMainWindowBase.h" />
     <ClInclude Include="..\..\..\src\CFBBWFQ\WinAPIUtils.h" />
   </ItemGroup>

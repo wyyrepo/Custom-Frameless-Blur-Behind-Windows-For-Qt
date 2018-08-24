@@ -5,6 +5,7 @@
 
 
 #include "CustomMainWindowBase.h"
+#include "CustomCaptionBase.h"
 
 
 // Tertiary level for custom windows
@@ -19,6 +20,7 @@ namespace  CFBBWFQ
 class cCustomMainWindow :
     public cCustomMainWindowBase
 {
+    Q_OBJECT
 
     typedef  cCustomMainWindowBase  tParent;
     typedef  cCustomMainWindow      tSelf;
@@ -30,8 +32,8 @@ public:
 
 public:
     // Caption API
-    QWidget*  CaptionWidget();  // Return pointer to mCaptionWidget, this keeps owning it
-    void  SetCaptionWidget( QWidget* iCaptionWidget );  // Pass pointer to mCaptionWidget, becoming owner
+    cCustomCaptionBase*  CaptionWidget();  // Return pointer to mCaptionWidget, this keeps owning it
+    void  SetCaptionWidget( cCustomCaptionBase* iCaptionWidget );  // Pass pointer to mCaptionWidget, becoming owner
 
 protected:
     // Protected Non-Client OS behaviour handling overrides
@@ -41,6 +43,12 @@ protected:
     // Protected Qt events override
     virtual  void  resizeEvent( QResizeEvent*  event )  override;
 
+private  slots:
+    // Private Qt Slots
+    void  ProcessCloseClicked();
+    void  ProcessMaximizeClicked();
+    void  ProcessMinimizeClicked();
+
 private:
     // Internal GUI management
     void  Init();       // allocate GUI members
@@ -49,7 +57,7 @@ private:
     void  Destroy();    // delete GUI members
 
 private:
-    QWidget* mCaptionWidget;
+    cCustomCaptionBase* mCaptionWidget;
 };
 
 

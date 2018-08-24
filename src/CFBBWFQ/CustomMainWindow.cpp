@@ -1,6 +1,9 @@
 #include "CustomMainWindow.h"
 
 
+#include <QApplication>
+
+
 namespace  CFBBWFQ
 {
 
@@ -29,8 +32,7 @@ cCustomMainWindow::cCustomMainWindow( QWidget *parent ) :
 //-------------------------------------------------------------------------- Caption API
 
 
-QWidget*
-
+cCustomCaptionBase*
 cCustomMainWindow::CaptionWidget()
 {
     return  mCaptionWidget;
@@ -38,7 +40,7 @@ cCustomMainWindow::CaptionWidget()
 
 
 void
-cCustomMainWindow::SetCaptionWidget( QWidget* iCaptionWidget )
+cCustomMainWindow::SetCaptionWidget( cCustomCaptionBase* iCaptionWidget )
 {
     if( mCaptionWidget )
     {
@@ -52,9 +54,9 @@ cCustomMainWindow::SetCaptionWidget( QWidget* iCaptionWidget )
         mCaptionWidget = iCaptionWidget;
         iCaptionWidget->setParent( this );
         iCaptionWidget->show();
-
-        //TMP:debug
-        iCaptionWidget->setStyleSheet( "background:red;" );
+        QObject::connect( mCaptionWidget, SIGNAL( CloseClicked() ), this, SLOT( ProcessCloseClicked() ) );
+        QObject::connect( mCaptionWidget, SIGNAL( MaximizeClicked() ), this, SLOT( ProcessMaximizeClicked() ) );
+        QObject::connect( mCaptionWidget, SIGNAL( MinimizeClicked() ), this, SLOT( ProcessMinimizeClicked() ) );
     }
 }
 
@@ -67,13 +69,14 @@ bool
 cCustomMainWindow::NCHitCaption( const  QRect&  iRect, const  long iBorderWidth, long iX, long iY )
 {
     bool  eligible = tParent::NCHitCaption( iRect, iBorderWidth, iX, iY );
+    QPoint local = mapFromGlobal( QPoint( iX, iY ) );
 
     if(!eligible)
         return  false;
 
     if( mCaptionWidget )
     {
-        // Delegate call to caption.
+        return  mCaptionWidget->HitEmptySpace( local.x(), local.y() );
     }
     else
     {
@@ -94,6 +97,38 @@ cCustomMainWindow::resizeEvent( QResizeEvent*  event )
 
     // Recompute internal geometry
     tSelf::Compose();
+}
+
+
+
+//--------------------------------------------------------------------------------------
+//--------------------------------------------------------------------- Private Qt Slots
+
+
+void
+cCustomMainWindow::ProcessCloseClicked()
+{
+    close();
+}
+
+void
+cCustomMainWindow::ProcessMaximizeClicked()
+{
+    if( CheckCustomWindowMaximizedState() )
+    {
+        Restore();
+    }
+    else
+    {
+        showMaximized();
+    }
+}
+
+
+void
+cCustomMainWindow::ProcessMinimizeClicked()
+{
+    showMinimized();
 }
 
 

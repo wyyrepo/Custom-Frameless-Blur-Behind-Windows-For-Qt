@@ -2,25 +2,28 @@
 
 
 #include <QObject>
-#include <QWidget>
 
 
-#include "CFBBWFQ/CustomMainWindowBase.h"
-#include "CFBBWFQ/CustomCaptionButton.h"
+#include "CustomCaptionBase.h"
+#include "CustomCaptionButton.h"
 
 
-class cDemoCustomMainCaption :
-    public QWidget
+namespace  CFBBWFQ
+{
+
+
+class cCustomCaption :
+    public cCustomCaptionBase
 {
 
     Q_OBJECT
 
-    typedef  ::CFBBWFQ::cCustomMainWindowBase  tParent;
+    typedef  ::CFBBWFQ::cCustomCaptionBase  tParent;
 
 public:
     // Construction / Destruction
-    virtual  ~cDemoCustomMainCaption();
-    cDemoCustomMainCaption( tParent* parent );
+    virtual  ~cCustomCaption();
+    cCustomCaption( QWidget* parent = Q_NULLPTR );
 
 public:
     // Public customization utilities
@@ -31,7 +34,7 @@ public:
 
 public:
     // Custom NC Handling implementation in caption
-    bool  HitEmptySpace( long iX, long iY );
+    virtual  bool  HitEmptySpace( long iX, long iY )  override;
 
 protected:
     // Protected Qt event overrides
@@ -59,7 +62,8 @@ private:
 
     QColor  mActiveBackgroundColor;
     QColor  mInactiveBackgroundColor;
-
-    tParent*  mParent;
 };
+
+
+} // namespace  CFBBWFQ
 
