@@ -1,6 +1,5 @@
 #include "AbstractFramelessBlurBehindWindow.h"
 
-
 #include "WinAPIUtils.h"
 
 
