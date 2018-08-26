@@ -31,9 +31,12 @@ public:
     cCustomMainWindow( QWidget* parent = Q_NULLPTR );
 
 public:
-    // Caption API
+    // Center / Caption API
     cCustomCaptionBase*  CaptionWidget();  // Return pointer to mCaptionWidget, this keeps owning it
     void  SetCaptionWidget( cCustomCaptionBase* iCaptionWidget );  // Pass pointer to mCaptionWidget, becoming owner
+    //-
+    QWidget* CenterWidget();  // Return pointer to mCenterWidget, keeps owning it.
+    void  SetCenterWidget( QWidget* iCenterWidget ); // Acquire ownership
 
 protected:
     // Protected Non-Client OS behaviour handling overrides
@@ -58,6 +61,7 @@ private:
 
 private:
     cCustomCaptionBase* mCaptionWidget;
+    QWidget* mCenterWidget;
 };
 
 

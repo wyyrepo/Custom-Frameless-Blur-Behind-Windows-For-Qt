@@ -61,6 +61,31 @@ cCustomMainWindow::SetCaptionWidget( cCustomCaptionBase* iCaptionWidget )
 }
 
 
+QWidget*
+cCustomMainWindow::CenterWidget()
+{
+    return  mCenterWidget;
+}
+
+
+void
+cCustomMainWindow::SetCenterWidget( QWidget* iCenterWidget )
+{
+    if( mCenterWidget )
+    {
+        delete  mCenterWidget;
+        mCenterWidget = NULL;
+    }
+
+    if( iCenterWidget )
+    {
+        mCenterWidget = iCenterWidget;
+        iCenterWidget->setParent( this );
+        iCenterWidget->show();
+    }
+}
+
+
 //--------------------------------------------------------------------------------------
 //--------------------------------- Protected Non-Client OS behaviour handling overrides
 
@@ -157,6 +182,11 @@ cCustomMainWindow::Compose()
     if( mCaptionWidget )
     {
         mCaptionWidget->setGeometry( CaptionGeometry() );
+    }
+
+    if( mCenterWidget )
+    {
+        mCenterWidget->setGeometry( ContentsGeometry() );
     }
 }
 
