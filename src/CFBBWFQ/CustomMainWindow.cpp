@@ -20,7 +20,8 @@ cCustomMainWindow::~cCustomMainWindow()
 
 cCustomMainWindow::cCustomMainWindow( QWidget *parent ) :
     tParent( parent ),
-    mCaptionWidget( NULL )
+    mCaptionWidget( NULL ),
+    mCenterWidget( NULL )
 {
     tSelf::Init();
     tSelf::Build();
@@ -166,6 +167,7 @@ cCustomMainWindow::Init()
 {
     // Not much there ATM but keep for consistency with the rest of the API GUI convention in my other Libs.
     mCaptionWidget = NULL;
+    mCenterWidget = NULL;
 }
 
 
@@ -199,6 +201,13 @@ cCustomMainWindow::Destroy()
         // This is owner of mCaptionWidget, responsibility to delete
         delete  mCaptionWidget;
         mCaptionWidget = NULL;
+    }
+
+    if( mCenterWidget )
+    {
+        // This is owner of mCaptionWidget, responsibility to delete
+        delete  mCenterWidget;
+        mCenterWidget = NULL;
     }
 }
 
